@@ -1,3 +1,13 @@
+<div class="menu-header"></div>
+<a href="#" id="menu-button" onclick="return false;" class="menu-open"></a>
+<script type="text/javascript">
+  document.getElementById('menu-button').addEventListener('click', function(event) {
+    let bodyElement = document.getElementsByTagName('body')[0];
+    let className = bodyElement.className;
+    bodyElement.className = (className == 'open') ? '' : 'open';
+    return false;
+  });
+</script>
 <nav>
   <ul class="menu">
     <li><a href="/">Blog</a></li>
