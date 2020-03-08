@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head') %>
+<body>
+  <%- include('partials/header') %>
+  <div class="page-inner">
+    <div class="container">
+      <main class="content">
+        <article>
+          <h1><%= page.title %></h1>
+          <%- body %>
+        </article>
+      </main>
+    </div>
+    <%- include('partials/footer') %>
+  </div>
+</body>
+</html>

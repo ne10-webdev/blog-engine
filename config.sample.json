@@ -1,15 +1,15 @@
 {
   "pages": {
-    "path": "pages",
+    "name": "pages",
     "urlPrefix": "",
     "indexPage": "blog/index.html"
   },
   "blog": {
-    "path": "blog",
+    "name": "blog",
     "urlPrefix": "blog/"
   },
   "projects": {
-    "path": "projects",
+    "name": "projects",
     "urlPrefix": "projects/"
   },
   "site": {
