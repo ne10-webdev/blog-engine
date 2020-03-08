@@ -25,6 +25,13 @@ async function init() {
       console.log('Waiting for changes...');
     }, 100)
   );
+  chokidar.watch(config.site.themePath, { ignoreInitial: true }).on(
+    'all',
+    debounce(() => {
+      build(config);
+      console.log('Waiting for changes...');
+    }, 100)
+  );
 }
 
 init();
