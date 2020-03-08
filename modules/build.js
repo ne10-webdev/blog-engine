@@ -5,6 +5,14 @@ const frontMatter = require('front-matter');
 const marked = require('marked');
 const ejs = require('ejs');
 
+// enable code syntax highlighting library
+const hljs = require("highlight.js");
+marked.setOptions({
+  highlight: function(md) {
+    return hljs.highlightAuto(md).value;
+  }
+});
+
 const build = async (options = {}) => {
   console.log('Building site...');
   const startTime = process.hrtime();
