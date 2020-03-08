@@ -1,0 +1,14 @@
+{
+  "name": "blog",
+  "version": "0.0.1",
+  "description": "",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js",
+    "serve": "node serve.js"
+  },
+  "author": "",
+  "dependencies": {
+    "fs-extra": "^8.1.0"
+  }
+}

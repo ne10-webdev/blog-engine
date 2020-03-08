@@ -1,0 +1,22 @@
+{
+  "pages": {
+    "path": "pages",
+    "urlPrefix": "",
+    "indexPage": "blog/index.html"
+  },
+  "blog": {
+    "path": "blog",
+    "urlPrefix": "blog/"
+  },
+  "projects": {
+    "path": "projects",
+    "urlPrefix": "projects/"
+  },
+  "site": {
+    "title": "Blog",
+    "basePrefix": "/",
+    "contentPath": "/home/user/web/blog/content",
+    "themePath": "/home/user/web/blog/themes/ne10",
+    "publicPath": "/home/user/web/blog/public"
+  }
+}
