@@ -18,7 +18,7 @@ const build = async (options = {}) => {
   const startTime = process.hrtime();
 
   // clear destination folder
-  fse.emptyDirSync(options.site.publicPath);
+  // fse.emptyDirSync(options.site.publicPath);
 
   // copy assets folder
   const assetsPath = path.join(options.site.themePath, 'assets');
