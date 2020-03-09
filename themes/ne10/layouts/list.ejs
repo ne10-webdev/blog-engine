@@ -8,7 +8,14 @@
       <main class="list">
         <% list.forEach(function(item){ %>
           <article>
-            <a href="<%- item.url %>"><%- item.title %></a>
+            <a class="list-header" href="<%- item.url %>"><%- item.title %></a>
+            <% if(item.tags.length) { %>
+              <p>Tags:
+                <% item.tags.forEach(function(tag){ %>
+                  <span><a href="/<%- item.section %>/tag/<%- tag %>"><%- tag %></a></span>
+                <% }); %>
+              </p>
+            <% } %>
             <p><%- item.description %></p>
           </article>
         <% }); %>

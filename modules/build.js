@@ -63,11 +63,13 @@ const buildSection = async (options = {}) => {
         const fileContent = fs.readFileSync(file, 'utf-8');
         const item = frontMatter(fileContent);
         const listItem = {
+          section: options.section.name,
           url: options.site.basePrefix + options.section.urlPrefix + newPath,
           title: item.attributes.title,
           description: item.attributes.description,
           date: item.attributes.date,
           draft: item.attributes.draft,
+          tags: item.attributes.tags || [],
           layout: item.attributes.layout || 'default',
           content: marked(item.body)
         };
@@ -78,8 +80,18 @@ const buildSection = async (options = {}) => {
       }
       // sort blog list by post date
       list.sort(function(a, b){ return b.date -a.date; });
+      let tags = [];
       for(let page of list) {
         buildPage(page, options);
+        for(let tag of page.tags) {
+          if(!tags.includes(tag)) {
+            tags.push(tag);
+          }
+        }
+      }
+      // build tags pages
+      for(let tag of tags) {
+        buildTagPage(list, tag, options);
       }
       if(options.section.indexPage) {
         fse.copyFileSync(path.join(options.site.publicPath, options.section.indexPage),
@@ -120,6 +132,7 @@ const buildPage = function(page, options) {
 // build public index.html file with list of posts
 const buildIndex = function(list, options) {
   const listPage = {
+    section: options.section.name,
     url: options.site.basePrefix + options.section.urlPrefix,
     title: 'Blog posts',
     description: '',
@@ -131,6 +144,28 @@ const buildIndex = function(list, options) {
   };
   buildPage(listPage, options);
 };
+
+const buildTagPage = function(list, tag, options) {
+  let listByTag = [];
+  for(let item of list) {
+    if(item.tags.includes(tag)) {
+      listByTag.push(item);
+    }
+  }
+  const listPage = {
+    section: options.section.name,
+    url: options.site.basePrefix + options.section.urlPrefix +
+      '/tag/' + tag,
+    title: 'Blog posts',
+    description: '',
+    date: new Date().getTime(),
+    draft: null,
+    layout: 'list',
+    content: '',
+    list: listByTag
+  };
+  buildPage(listPage, options);
+}
 
 // read directory content recusively
 const walk = function(dir, done) {
