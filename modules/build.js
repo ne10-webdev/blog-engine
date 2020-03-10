@@ -6,11 +6,31 @@ const marked = require('marked');
 const ejs = require('ejs');
 
 // enable code syntax highlighting library
-const hljs = require("highlight.js");
+const hljs = require("highlight.js/lib/highlight.js");
+hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
+hljs.registerLanguage('plaintext', require('highlight.js/lib/languages/plaintext'));
+hljs.registerLanguage('yaml', require('highlight.js/lib/languages/yaml'));
+hljs.registerLanguage('sql', require('highlight.js/lib/languages/sql'));
+hljs.registerLanguage('bash', require('highlight.js/lib/languages/bash'));
+hljs.registerLanguage('htmlbars', require('highlight.js/lib/languages/htmlbars'));
+hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
+
 marked.setOptions({
-  highlight: function(md) {
-    return hljs.highlightAuto(md).value;
+  highlight: function(code, language) {
+    const validLanguage = hljs.getLanguage(language) ? language : 'plaintext';
+    return hljs.highlight(validLanguage, code).value;
+    // return hljs.highlightAuto(code).value;
   }
+  // highlight: function(code, language) {
+  //   console.log(language);
+  //   if(language) {
+  //     const hljs = require('highlight.js');
+  //     const validLanguage = hljs.getLanguage(language) ? language : 'plaintext';
+  //     return hljs.highlight(code, validLanguage).value;
+  //   } else {
+  //     return hljs.highlightAuto(code).value;
+  //   }    
+  // }
 });
 
 const build = async (options = {}) => {
