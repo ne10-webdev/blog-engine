@@ -10,7 +10,7 @@
   "author": "",
   "dependencies": {
     "fs-extra": "^8.1.0",
-    "marked": "^0.8.0",
+    "marked": "^4.0.10",
     "front-matter": "^3.1.0",
     "ejs": "^3.0.1",
     "highlight.js": "^9.18.1"
